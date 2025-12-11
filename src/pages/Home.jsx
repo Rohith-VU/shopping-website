@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
+import banner from "../assets/banner.jpg";
+import offer from "../assets/offer.jpg";
 
 export default function Home() {
   const [featured, setFeatured] = useState([]);
@@ -23,7 +25,7 @@ export default function Home() {
         <div className="bg-black text-white py-3">
           <marquee>
             <p className="text-xl font-bold tracking-wide">
-              ⚡ FESTIVAL OFFER — FLAT 50% OFF ON ALL PRODUCTS ⚡
+               FESTIVAL OFFER — FLAT 50% OFF ON ALL PRODUCTS 
             </p>
           </marquee>
         </div>
@@ -31,7 +33,7 @@ export default function Home() {
         {/* FULL WIDTH BANNER */}
         <section>
           <img
-            src="./src/assets/banner.jpg"
+            src={banner}
             alt="banner"
             className="w-full h-auto object-cover"
           />
@@ -64,7 +66,7 @@ export default function Home() {
         {/* OFFER BANNER (HEIGHT REDUCED) */}
         <section>
           <img
-            src="./src/assets/offer.jpg"
+           src={offer}
             alt="Offer Banner"
             className="w-full h-57 object-cover rounded"
           />
