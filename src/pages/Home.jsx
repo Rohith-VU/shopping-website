@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import banner from "../assets/banner.jpg";
-import offer from "../assets/offer.jpg";
+import heroImg from "../assets/hero-img.jpg";
+
 
 export default function Home() {
   const [featured, setFeatured] = useState([]);
   const [offers, setOffers] = useState([]);
 
-  // Fetch products from Fake API
   useEffect(() => {
     fetch("https://dummyjson.com/products?limit=6")
       .then(res => res.json())
@@ -19,83 +19,158 @@ export default function Home() {
 
   return (
     <>
-      <div className="bg-white text-black min-h-screen">
+      <div className="bg-white text-black ">
 
         {/* OFFER MARQUEE */}
         <div className="bg-black text-white py-3">
           <marquee>
             <p className="text-xl font-bold tracking-wide">
-               FESTIVAL OFFER — FLAT 50% OFF ON ALL PRODUCTS 
+              FESTIVAL OFFER — FLAT 50% OFF ON ALL PRODUCTS
             </p>
           </marquee>
         </div>
 
-        {/* FULL WIDTH BANNER */}
-        <section>
-          <img
-            src={banner}
-            alt="banner"
-            className="w-full h-auto object-cover"
-          />
+        {/* HERO SECTION */}
+        <section className="bg-gradient-to-r  from-gray-900 to-black text-white py-24 px-6">
+          <div className="max-w-7xl  ml-5 mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+            <div>
+              <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+                Premium Products <br />
+                <span className="text-yellow-400">Curated Just For You</span>
+              </h1>
+
+              <p className="mt-6 text-gray-300 text-lg">
+                Explore high-quality products with exclusive festive discounts
+                and a premium shopping experience.
+              </p>
+            </div>
+
+            <div className="flex justify-center">
+              <img
+                src={heroImg}
+                alt="Hero"
+                className="h-80"
+              />
+            </div>
+
+          </div>
         </section>
 
         {/* FEATURED PRODUCTS */}
-        <section className="py-14 px-6">
-          <h2 className="text-3xl font-bold text-center mb-10">Featured Products</h2>
+        <section className="py-16 px-6">
+          <h2 className="text-4xl font-bold text-center mb-10">
+            Featured Products
+          </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-
-            {featured.map((item) => (
+          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {featured.map(item => (
               <div
                 key={item.id}
-                className="bg-white border border-gray-300 rounded-xl p-5 shadow hover:shadow-2xl transition"
+                className="bg-white border border-gray-200 rounded-2xl p-5 shadow hover:shadow-2xl transition"
               >
                 <img
                   src={item.thumbnail}
                   alt={item.title}
-                  className="rounded-lg h-48 w-full object-cover"
+                  className="rounded-xl h-48 w-full object-cover"
                 />
                 <h3 className="font-bold text-lg mt-4">{item.title}</h3>
-                <p className="text-gray-600 mt-1 font-medium">₹{Math.round(item.price * 80)}</p>
+                <p className="text-gray-600 mt-1">
+                  ₹{Math.round(item.price * 80)}
+                </p>
+                <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                  {item.description}
+                </p>
               </div>
             ))}
-
           </div>
         </section>
 
-        {/* OFFER BANNER (HEIGHT REDUCED) */}
-        <section>
+        {/* OFFER PRODUCTS (SAME UI AS FEATURED) */}
+        <section className="py-16 px-6 bg-gray-50">
+          <h2 className="text-4xl font-bold text-center mb-10">
+            Offer Products
+          </h2>
+
+          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {offers.map(item => (
+              <div
+                key={item.id}
+                className="bg-white border border-gray-200 rounded-2xl p-5 shadow hover:shadow-2xl transition"
+              >
+                <img
+                  src={item.thumbnail}
+                  alt={item.title}
+                  className="rounded-xl h-48 w-full object-cover"
+                />
+                <h3 className="font-bold text-lg mt-4">{item.title}</h3>
+                <p className="text-gray-600 mt-1">
+                  ₹{Math.round(item.price * 80)}
+                </p>
+                <p className="text-green-600 font-semibold mt-1">
+                  {item.discountPercentage}% OFF
+                </p>
+                <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+            {/* BOTTOM BANNER */}
+        <section className="px-6 pb-16">
           <img
-           src={offer}
-            alt="Offer Banner"
-            className="w-full h-57 object-cover rounded"
+            src={banner}
+            alt="Bottom Banner"
+            className="w-full  object-cover rounded-2xl shadow"
           />
         </section>
 
-        {/* OFFER PRODUCTS */}
-        <section className="py-10 px-6 bg-gray-50 text-black">
-          <h2 className="text-3xl font-bold text-center mb-10">Offer Products</h2>
+        {/* TESTIMONIALS */}
+        <section className="py-16 px-6 bg-white">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Our Happy Customers
+          </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            {offers.map((item) => (
+            {[
+              {
+                name: "Ananya Sharma",
+                img: "https://randomuser.me/api/portraits/women/44.jpg",
+                text: "Amazing quality and smooth shopping experience!"
+              },
+              {
+                name: "Rahul Verma",
+                img: "https://randomuser.me/api/portraits/men/46.jpg",
+                text: "Premium UI and excellent product quality."
+              },
+              {
+                name: "Priya Nair",
+                img: "https://randomuser.me/api/portraits/women/65.jpg",
+                text: "Loved the festive offers and simple layout."
+              }
+            ].map((user, index) => (
               <div
-                key={item.id}
-                className="bg-white text-black rounded-xl p-5 shadow hover:shadow-2xl transition"
+                key={index}
+                className="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-xl transition text-center"
               >
                 <img
-                  src={item.thumbnail}
-                  alt={item.title}
-                  className="rounded-lg h-48 w-full object-cover"
+                  src={user.img}
+                  alt={user.name}
+                  className="w-16 h-16 rounded-full mx-auto mb-4 object-cover"
                 />
-                <h3 className="font-bold text-lg mt-4">{item.title}</h3>
-                <p className="text-gray-700 mt-1 font-medium">₹{Math.round(item.price * 80)}</p>
-                <p className="text-green-600 font-semibold">{item.discountPercentage}% OFF</p>
+                <p className="text-gray-700 italic">“{user.text}”</p>
+                <h4 className="font-bold mt-4">{user.name}</h4>
+                <p className="text-sm text-gray-500">Verified Buyer</p>
               </div>
             ))}
 
           </div>
         </section>
+
+    
 
       </div>
 
