@@ -19,8 +19,6 @@ export default function Home() {
 
   return (
     <>
-      <div className="bg-white text-black ">
-
         {/* OFFER MARQUEE */}
         <div className="bg-black text-white py-3">
           <marquee>
@@ -32,7 +30,7 @@ export default function Home() {
 
         {/* HERO SECTION */}
         <section className="bg-gradient-to-r  from-gray-900 to-black text-white py-24 px-6">
-          <div className="max-w-7xl  ml-5 mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="max-w-7xl  ml-40 mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
             <div>
               <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
@@ -129,7 +127,7 @@ export default function Home() {
 
         {/* TESTIMONIALS */}
         <section className="py-16 px-6 bg-white">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-4xl font-bold text-center mb-12">
             Our Happy Customers
           </h2>
 
@@ -169,10 +167,6 @@ export default function Home() {
 
           </div>
         </section>
-
-    
-
-      </div>
 
       <Footer />
     </>
