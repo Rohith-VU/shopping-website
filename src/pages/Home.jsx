@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import banner from "../assets/banner.jpg";
 import heroImg from "../assets/hero-img.jpg";
+import { Link } from "react-router-dom";
+import BannerCarousel from "../components/BannerCarousel";
+
 
 
 export default function Home() {
@@ -9,27 +12,20 @@ export default function Home() {
   const [offers, setOffers] = useState([]);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products?limit=6")
+    fetch("https://dummyjson.com/products?limit=20")
       .then(res => res.json())
       .then(data => {
-        setFeatured(data.products.slice(0, 3));
-        setOffers(data.products.slice(3, 6));
+        setFeatured(data.products.slice(0, 9));
+        setOffers(data.products.slice(9,15));
       });
   }, []);
 
   return (
     <>
-        {/* OFFER MARQUEE */}
-        <div className="bg-black text-white py-3">
-          <marquee>
-            <p className="text-xl font-bold tracking-wide">
-              FESTIVAL OFFER — FLAT 50% OFF ON ALL PRODUCTS
-            </p>
-          </marquee>
-        </div>
+      
 
         {/* HERO SECTION */}
-        <section className="bg-gradient-to-r  from-gray-900 to-black text-white py-24 px-6">
+        <section className="bg-gradient-to-r bg-black text-white py-24 px-6">
           <div className="max-w-7xl  ml-40 mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
             <div>
@@ -38,10 +34,13 @@ export default function Home() {
                 <span className="text-yellow-400">Curated Just For You</span>
               </h1>
 
-              <p className="mt-6 text-gray-300 text-lg">
+              <p className="mt-6 text-gray-300 text-lg mb-10">
                 Explore high-quality products with exclusive festive discounts
                 and a premium shopping experience.
               </p>
+              <Link to="/products" className="bg-yellow-400 text-black px-4 py-2 text-xl rounded-full font-semibold hover:bg-yellow-500 transition">
+                          Buy Now
+                        </Link>
             </div>
 
             <div className="flex justify-center">
@@ -53,6 +52,7 @@ export default function Home() {
             </div>
 
           </div>
+          
         </section>
 
         {/* FEATURED PRODUCTS */}
@@ -61,7 +61,8 @@ export default function Home() {
             Featured Products
           </h2>
 
-          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          
+           <div className="max-w-7xl mt-15 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {featured.map(item => (
               <div
                 key={item.id}
@@ -82,7 +83,10 @@ export default function Home() {
               </div>
             ))}
           </div>
+          
         </section>
+              <BannerCarousel />
+
 
         {/* OFFER PRODUCTS (SAME UI AS FEATURED) */}
         <section className="py-16 px-6 bg-gray-50">
